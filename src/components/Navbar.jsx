@@ -2,6 +2,7 @@ function Navbar() {
   return (
     <nav>
       <h1>MixMaster</h1>
+      <NavItems />
     </nav>
   )
 }
