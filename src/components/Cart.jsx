@@ -1,4 +1,5 @@
 import Button from './Button'
+import { Link } from 'react-router-dom'
 
 function Cart() {
   return (
@@ -12,7 +13,9 @@ function Cart() {
         <h1 className="text-3xl font-bold mb-3">code</h1>
         <h2 className="text-2xl tracking-wider">Coctail Glass</h2>
         <h2 className="text-lg mb-3 text-stone-500">Option Alcohol</h2>
-        <Button>Details</Button>
+        <Link to={`/coctail/123`}>
+          <Button type={'btn'}>Details</Button>
+        </Link>
       </div>
     </div>
   )

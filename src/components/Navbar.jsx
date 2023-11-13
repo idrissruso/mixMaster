@@ -13,19 +13,13 @@ function NavItems() {
   return (
     <ul className="flex gap-x-5">
       <li>
-        <NavLink to={'/'} exact>
-          Home
-        </NavLink>
+        <NavLink to={'/'}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={'/about'} exact>
-          About
-        </NavLink>
+        <NavLink to={'/about'}>About</NavLink>
       </li>
       <li>
-        <NavLink to={'/news'} exact>
-          NewsLetter
-        </NavLink>
+        <NavLink to={'/news'}>NewsLetter</NavLink>
       </li>
     </ul>
   )
