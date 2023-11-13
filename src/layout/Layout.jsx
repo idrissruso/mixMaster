@@ -6,7 +6,7 @@ function Layout() {
   return (
     <div className="bg-green-50 min-h-screen">
       <Navbar />
-      <main className="mx-[15%] mt-20 flex flex-col items-center">
+      <main className="mx-[15%] py-20">
         <Outlet />
       </main>
     </div>
