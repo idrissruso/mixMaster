@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Coctail from './pages/Coctail'
 import About from './pages/About'
 import NewsLetter from './pages/NewsLetter'
+import { Suspense } from 'react'
+import Spinner from './components/Spinner'
 
 const routes = createBrowserRouter([
   {
@@ -33,7 +35,11 @@ const routes = createBrowserRouter([
 ])
 
 function App() {
-  return <RouterProvider router={routes} />
+  return (
+    <Suspense fallback={<Spinner />}>
+      <RouterProvider router={routes} />
+    </Suspense>
+  )
 }
 
 export default App
