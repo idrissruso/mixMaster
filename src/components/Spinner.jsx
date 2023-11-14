@@ -1,7 +1,7 @@
 function Spinner() {
   return (
-    <div className="absolute flex items-center justify-center min-h-screen w-screen bg-green-400/10 z-10">
-      <div class="lds-spinner">
+    <div className="absolute z-10 w-full pr-10 centralized">
+      <div className="lds-spinner">
         <div></div>
         <div></div>
         <div></div>

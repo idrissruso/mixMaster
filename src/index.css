@@ -88,3 +88,10 @@
     opacity: 0;
   }
 }
+
+.centralized {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 70%;
+  left: 100%;
+}

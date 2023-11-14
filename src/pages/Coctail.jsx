@@ -1,33 +1,48 @@
 import Button from '../components/Button'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLoaderData } from 'react-router-dom'
+import { useInView } from 'react-intersection-observer'
 
 function Coctail() {
   const navigate = useNavigate()
+  const data = useLoaderData()
+  const {
+    strDrink,
+    strCategory,
+    strAlcoholic,
+    strGlass,
+    strInstructions,
+    strDrinkThumb,
+    strIngredient1,
+    strIngredient2,
+    strIngredient3,
+  } = data.drinks[0]
+
+  const strIngredients =
+    strIngredient1 + ' ' + strIngredient2 + ' ' + strIngredient3
+
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Load only once
+    rootMargin: '200px',
+  })
 
   return (
     <div>
-      <h1 className="text-center text-4xl font-semibold mb-11">A1</h1>
+      <h1 className="text-center text-4xl font-semibold mb-11">{strDrink}</h1>
       <div className="flex lg:flex-nowrap flex-wrap gap-x-10 gap-y-3 items-center">
         <img
-          src="https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg"
-          alt=""
+          alt={strDrink}
           className="max-w-[26rem] h-[24rem]"
+          ref={ref}
+          src={inView ? strDrinkThumb : ''}
+          loading="lazy"
         />
         <div className="">
-          <Item KeyWord={'Name'} value={'name'} />
-          <Item KeyWord={'Category'} value={'Cocktail'} />
-          <Item KeyWord={'Info'} value={'Alcoholic'} />
-          <Item KeyWord={'Glass'} value={'Cocktail Glass'} />
-          <Item
-            KeyWord={'Ingredients'}
-            value={'Gin,Grand Marnier,Lemon Juice,Grenadine'}
-          />
-          <Item
-            KeyWord={'Instructions'}
-            value={
-              'Pour All Ingredients Into A Cocktail Shaker, Mix And Serve Over Ice Into A Chilled Glass.'
-            }
-          />
+          <Item KeyWord={'Name'} value={strDrink} />
+          <Item KeyWord={'Category'} value={strCategory} />
+          <Item KeyWord={'Info'} value={strAlcoholic} />
+          <Item KeyWord={'Glass'} value={strGlass} />
+          <Item KeyWord={'Ingredients'} value={strIngredients} />
+          <Item KeyWord={'Instructions'} value={strInstructions} />
         </div>
       </div>
 
@@ -48,6 +63,14 @@ function Item({ KeyWord, value }) {
       <span className="text-base font-medium ml-2 ">{value}</span>
     </div>
   )
+}
+
+export async function loader({ id }) {
+  const data = await fetch(
+    `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${id}`
+  )
+  console.log(data)
+  return await data.json()
 }
 
 export default Coctail
